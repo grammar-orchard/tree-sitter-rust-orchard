@@ -1,0 +1,65 @@
+================================================================================
+auto is contextual
+================================================================================
+
+auto!();
+
+fn main() {
+    auto();
+    let auto = 3;
+    auto;
+    auto as usize;
+}
+
+fn auto() {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (expression_statement
+    (macro_invocation
+      (identifier)
+      (token_tree)))
+  (function_item
+    (identifier)
+    (parameters)
+    (block
+      (expression_statement
+        (call_expression
+          (identifier)
+          (arguments)))
+      (let_declaration
+        (identifier)
+        (integer_literal))
+      (expression_statement
+        (identifier))
+      (expression_statement
+        (type_cast_expression
+          (identifier)
+          (primitive_type)))))
+  (function_item
+    (identifier)
+    (parameters)
+    (block)))
+
+================================================================================
+'raw' is a valid identifier too (issue #277)
+================================================================================
+
+fn main() {
+  foo(&raw);
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_item
+    (identifier)
+    (parameters)
+    (block
+      (expression_statement
+        (call_expression
+          (identifier)
+          (arguments
+            (reference_expression
+              (identifier))))))))

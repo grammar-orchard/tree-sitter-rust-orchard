@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=62.4.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tree-sitter-rust-orchard"
+description = "Grammar for Rust that aims to be closer to the actual AST"
+version = "0.16.11"
+keywords = ["incremental", "parsing", "tree-sitter", "rust-orchard"]
+classifiers = [
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Compilers",
+  "Topic :: Text Processing :: Linguistic",
+  "Typing :: Typed",
+]
+authors = [{ name = "Maxim Sokolov", email = "maxim0xff@gmail.com" }]
+requires-python = ">=3.10"
+license.text = "MIT"
+readme = "README.md"
+
+[project.urls]
+Homepage = "https://codeberg.org/grammar-orchard/tree-sitter-rust-orchard"
+
+[project.optional-dependencies]
+core = ["tree-sitter~=0.24"]
+
+[tool.cibuildwheel]
+build = "cp310-*"
+build-frontend = "build"
